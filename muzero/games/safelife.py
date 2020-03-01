@@ -332,8 +332,5 @@ class InnerGame(SafeLifeEnv):
         # XXX does this need to be a list of integers?
         return self.conf.action_space
 
-    def close(self):
-        self.close()
-
     def output_action(self, action):
         return "{0}. {1}".format(action, SafeLifeEnv.action_names[action])

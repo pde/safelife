@@ -54,6 +54,7 @@ class MuZero:
 
     def train(self):
         ray.init()
+        print("Logging at", self.config.results_path)
         os.makedirs(self.config.results_path, exist_ok=True)
         writer = SummaryWriter(self.config.results_path)
 
