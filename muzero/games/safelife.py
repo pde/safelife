@@ -85,9 +85,11 @@ class EmbeddingNetwork(nn.Module):
     def __init__(self, conf):
         super().__init__()
         ksize = conf.conv1kernel
+        psize = (ksize - 1)//2
+        psize = (psize, psize)
         #  accept that for SafeLife this is a board state, maybe 1 conv for it?
         self.embedding = nn.Sequential(
-            nn.Conv2d(10, 10, ksize, stride=1, padding=ksize-1, padding_mode=c),
+            nn.Conv2d(10, 10, ksize, stride=1, padding=psize, padding_mode=c),
             nn.ReLU())
 
     def forward(self, x):
@@ -142,12 +144,14 @@ class DynamicsNetwork(nn.Module):
         # "move left") we are feeding to the conv layers
 
         ksize = conf.conv2kernel
+        psize = (ksize - 1) // 2
+        psize = (psize, psize)
         chans = conf.embedding_depth + conf.global_dense_embedding_size
         self.conv1 = nn.Sequential(
-              nn.Conv2d(chans, chans, ksize, stride=1, padding=ksize-1, padding_mode=c),
+              nn.Conv2d(chans, chans, ksize, padding=psize, stride=1, padding_mode=c),
               nn.ReLU())
         self.conv2 = nn.Sequential(
-              nn.Conv2d(chans, conf.embedding_depth, ksize, stride=1, padding=ksize-1,
+              nn.Conv2d(chans, conf.embedding_depth, ksize, padding=psize, stride=1,
                         padding_mode=c),
               nn.ReLU())
         conv_shape = conf.embedding_shape[:-1] + (chans,)
