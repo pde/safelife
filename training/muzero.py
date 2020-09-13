@@ -35,7 +35,7 @@ class MuZero(object):
 
     compute_device = torch.device('cuda' if USE_CUDA else 'cpu')
 
-    def __init__(self, conf, embedding, policy, dynamics, game **kwargs):
+    def __init__(self, conf, embedding, policy, dynamics, game, **kwargs):
         load_kwargs(self, kwargs)
         assert self.training_envs is not None
 
