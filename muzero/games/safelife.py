@@ -202,8 +202,7 @@ class MuZeroConfig:
 
         ### Game
         self.observation_shape = (26,26,10)  # Dimensions of the game observation
-        #self.action_space = SafeLifeEnv.action_names  # Fixed list of all possible actions
-        self.action_space = torch.arange(len(SafeLifeEnv.action_names))
+        self.action_space = torch.arange(len(SafeLifeEnv.action_names)) # Fixed list of all possible actions
         self.view_shape = (26, 26)
 
         ### Self-Play

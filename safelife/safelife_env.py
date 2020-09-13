@@ -52,6 +52,18 @@ class SafeLifeEnv(gym.Env):
 
     game = None
 
+    action_names = (
+        "NULL",
+        "MOVE UP",
+        "MOVE RIGHT",
+        "MOVE DOWN",
+        "MOVE LEFT",
+        "TOGGLE UP",
+        "TOGGLE RIGHT",
+        "TOGGLE DOWN",
+        "TOGGLE LEFT",
+    )
+
     # The following are default parameters that can be overridden during
     # initialization.
     single_agent = False
