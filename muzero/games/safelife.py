@@ -93,6 +93,7 @@ class EmbeddingNetwork(nn.Module):
             nn.ReLU())
 
     def forward(self, x):
+        print(x.shape)
         x = x.transpose(-1, -3) # convert from SafeLife observation to torch
         return self.embedding(x)
 
