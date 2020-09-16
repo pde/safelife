@@ -51,6 +51,9 @@ parser.add_argument('--curriculum', default="progress_estimate", type=str,
 
 parser.add_argument('--port', type=int,
     help="Port on which to run tensorboard.")
+
+parser.add_argument('--dense-depth', type=int, default=1,
+    help="Depth of PPO fully connected layers.")
 parser.add_argument('-w', '--wandb', action='store_true',
     help='Use wandb for analytics.')
 parser.add_argument('--ensure-gpu', action='store_true',
@@ -186,7 +189,7 @@ try:
 
     if config['algo'] == 'ppo':
         from training.ppo import PPO as algo_cls
-        algo_args['model'] = models.SafeLifePolicyNetwork(obs_shape)
+        algo_args['model'] = models.SafeLifePolicyNetwork(obs_shape, dense_depth=config['dense_depth'])
     elif config['algo'] == 'dqn':
         from training.dqn import DQN as algo_cls
         algo_args['training_model'] = models.SafeLifeQNetwork(obs_shape)
