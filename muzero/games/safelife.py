@@ -8,7 +8,7 @@ from torch import nn
 
 from safelife.safelife_env import SafeLifeEnv
 from safelife.safelife_game import CellTypes
-from safelife.file_finder import SafeLifeLevelIterator
+from safelife.level_iterator import SafeLifeLevelIterator
 from safelife import env_wrappers
 
 s = nn.Sequential
